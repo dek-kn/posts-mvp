@@ -7,7 +7,7 @@ const uiSlice = createSlice({
     },
     reducers: {
         setDrawerOpen(state, action) {
-            state.isDrawerOpen = action.payload
+            state.isDrawerOpen = action.payload.isOpen
         },
     },
 })

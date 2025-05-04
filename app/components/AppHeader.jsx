@@ -1,18 +1,20 @@
 "use client"
 
-import { useState } from "react"
+import { useDispatch } from "react-redux"
 import { AppBar, Box, IconButton, Toolbar, Typography } from "@mui/material"
 
 import MenuIcon from "@mui/icons-material/Menu"
 
-import AppDrawer from "@/app/components/AppDrawer"
+import { setDrawerOpen } from "../store/uiSlice"
 
 export default function AppHeader() {
-    const [isAppDrawerOpen, setAppDrawerOpen] = useState(false)
+    const openDrawer = () => dispatch(
+        setDrawerOpen({
+            isOpen: true,
+        })
+    )
 
-    const toggleDrawer = newOpen => () => {
-        setAppDrawerOpen(newOpen)
-    }
+    const dispatch = useDispatch()
 
     return (
         <Box sx={{ flexGrow: 1 }}>
@@ -24,7 +26,7 @@ export default function AppHeader() {
                         color="inherit"
                         aria-label="menu"
                         sx={{ mr: 2 }}
-                        onClick={ toggleDrawer(true) }
+                        onClick={openDrawer}
                     >
                         <MenuIcon />
                     </IconButton>
@@ -33,7 +35,6 @@ export default function AppHeader() {
                     </Typography>
                 </Toolbar>
             </AppBar>
-            <AppDrawer isOpen={isAppDrawerOpen} toggleDrawer={toggleDrawer} />
         </Box>
     )
 }
