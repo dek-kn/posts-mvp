@@ -1,4 +1,7 @@
+import { Provider } from "react-redux"
+
 import "./globals.css"
+import store from "@/app/store"
 import AppHeader from "@/app/components/AppHeader"
 
 export const metadata = {
@@ -10,8 +13,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <AppHeader />
-        {children}
+        <Provider store={store}>
+          <AppHeader />
+          {children}
+        </Provider>
       </body>
     </html>
   )
